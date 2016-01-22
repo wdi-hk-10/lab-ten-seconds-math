@@ -1,0 +1,58 @@
+/*
+ * ColorsPicked with love from:
+ * http://www.colourlovers.com/web/trends/websites/7858/Pandora
+ */
+
+.page-header {
+  margin-top: 0px;
+  background-color: #091D42;
+  padding: 20px;
+  color: white;
+}
+
+.page-header > h2 {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#answer-box {
+  margin-top: 50px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #9AB4CB;
+}
+
+#counter {
+  font-size: 30px;
+}
+
+#equation {
+  margin-top: 50px;
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#solution-input {
+  margin-top: 3em;
+  padding: 10px;
+  width: 200px;
+}
+
+#gameover-box {
+  margin-top: 50px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #9AB4CB;
+}
+
+#gameover-box > h1 {
+  font-size: 60px;
+}
+
+#gameover-box > h2 {
+  font-size: 30px;
+}
+
+#gameover-box > button {
+  margin-top: 50px;
+}
