@@ -48,7 +48,7 @@ $(document).ready(function(){
   }
 
   function increaseTimeByTenSecond() {
-    var holder = parseInt($timeNode.text()) +1;
+    var holder = parseInt($timeNode.text()) +10;
     $timeNode.text(holder);
     }
 
