@@ -40,17 +40,36 @@ $(document).ready(function(){
 
   function reduceTimeByOneSecond() {
     var holder = parseInt($timeNode.text()) -1;
-    $timeNode.text(holder);
+    if (holder <=-1) {
+      gameOver();
+    } else {
+      $timeNode.text(holder);
     }
+  }
 
   function increaseTimeByTenSecond() {
-    var holder = parseInt($timeNode.text()) +10;
+    var holder = parseInt($timeNode.text()) +1;
     $timeNode.text(holder);
     }
 
   function startClock() {
     startTimer = setInterval(reduceTimeByOneSecond, 1000);
   };
+
+  function gameOver(){
+    clearInterval(startTimer);
+    $userInput.hide();
+    $("#gameover-box").removeClass("hide");
+    $("#score").text(points);
+    $("#restart-btn").on("click", function(){
+      $("#gameover-box").addClass("hide");
+      $userInput.show();
+      $timeNode.text(10);
+      points = 0;
+      numberGenerator(3);
+      startListener();
+    })
+  }
 
   numberGenerator(3);
   startListener();
