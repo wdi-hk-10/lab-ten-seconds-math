@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
-var firstNum;
-var secondNum;
-var points=0;
-var $userInput = $("#solution-input")
+  var firstNum;
+  var secondNum;
+  var points=0;
+  var $userInput = $("#solution-input");
+  var $timeNode = $("#secondsLeft");
+  var startTimer;
 
   function numberGenerator (x){
     firstNum = parseInt((Math.random()*x+1));
@@ -19,23 +21,39 @@ var $userInput = $("#solution-input")
       $userInput.val('');
       points = points+5;
       numberGenerator(10);
+      increaseTimeByTenSecond();
     } else {
-      $userInput.css({"border-width":"2px", "border-color":"red"});
+      $userInput.css({"border-color":"red"});
     };
   }
 
-function startGame(){
-  $inputValue = parseInt($userInput.val());
-  checkAddition(firstNum, secondNum, $inputValue)
-}
+  function startGame(){
+    $inputValue = parseInt($userInput.val());
+    clearInterval(startTimer);
+    startClock();
+    checkAddition(firstNum, secondNum, $inputValue)
+  }
 
+  function startListener (){
+    $userInput.keyup(startGame);
+  }
 
-function startListener (){
-  $userInput.keyup(startGame);
-}
+  function reduceTimeByOneSecond() {
+    var holder = parseInt($timeNode.text()) -1;
+    $timeNode.text(holder);
+    }
 
-numberGenerator(3);
-startListener();
+  function increaseTimeByTenSecond() {
+    var holder = parseInt($timeNode.text()) +10;
+    $timeNode.text(holder);
+    }
+
+  function startClock() {
+    startTimer = setInterval(reduceTimeByOneSecond, 1000);
+  };
+
+  numberGenerator(3);
+  startListener();
 
 });
 
