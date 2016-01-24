@@ -1,28 +1,41 @@
 $(document).ready(function(){
 
-var firstNum = parseInt((Math.random()*10+1));
-var secondNum = parseInt((Math.random()*10+1));
-var $userInput = $("#solution-input").val();
+var firstNum;
+var secondNum;
+var points=0;
+var $userInput = $("#solution-input")
 
-  function numberGenerator (){
-    firstNum = parseInt((Math.random()*10+1));
-    secondNum = parseInt((Math.random()*10+1));
+  function numberGenerator (x){
+    firstNum = parseInt((Math.random()*x+1));
+    secondNum = parseInt((Math.random()*x+1));
     $("#num1").text(firstNum);
     $("#num2").text(secondNum);
-
   }
 
   function checkAddition(first, second, input){
     var solution = first+second;
-    if (input===solution){
-      console.log("true");
-    } else console.log("false");
+    if (input==solution){
+      $userInput.css({"border-color":"blue"});
+      $userInput.val('');
+      points = points+5;
+      numberGenerator(10);
+    } else {
+      $userInput.css({"border-width":"2px", "border-color":"red"});
+    };
   }
 
-numberGenerator();
+function startGame(){
+  $inputValue = parseInt($userInput.val());
+  checkAddition(firstNum, secondNum, $inputValue)
+}
 
-checkAddition(firstNum, secondNum, $userInput);
 
+function startListener (){
+  $userInput.keyup(startGame);
+}
 
+numberGenerator(3);
+startListener();
 
 });
+
