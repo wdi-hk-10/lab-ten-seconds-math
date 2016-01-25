@@ -6,6 +6,7 @@ $(document).ready(function(){
   var $userInput = $("#solution-input");
   var $timeNode = $("#secondsLeft");
   var startTimer;
+  var operator;
 
   function numberGenerator (x){
     firstNum = parseInt((Math.random()*x+1));
@@ -36,6 +37,7 @@ $(document).ready(function(){
 
   function startListener (){
     $userInput.keyup(startGame);
+    operatorGenerator();
   }
 
   function reduceTimeByOneSecond() {
@@ -69,6 +71,13 @@ $(document).ready(function(){
       numberGenerator(3);
       startListener();
     })
+  }
+
+  function operatorGenerator(){
+    operator = parseInt($("input[name=\"operator\"]:checked").val());
+    if (operator==1){additionGame;}
+    else if ()
+
   }
 
   numberGenerator(3);
