@@ -2,11 +2,12 @@ $(document).ready(function(){
   // your code here
 
   var sec;
+  var timer;
   var correctAnswer;
   var score = 0;
 
   function init () {
-    clockCountdown();
+    //clockCountdown();
     generateNumbers();
     checkAnswer();
   }
@@ -21,10 +22,11 @@ $(document).ready(function(){
   }
 
   function clockCountdown () {
+    console.log("Hello");
     sec = 10;
-    var timer = setInterval(function() {
+    timer = setInterval(function() {
     $('#secondsLeft').text(sec--);
-      if (sec === -1) { // why does this need to be -1, not 0.
+      if (sec <= -1) { // why does this need to be -1, not 0.
         gameOver();
       }
     },1000);
@@ -32,21 +34,24 @@ $(document).ready(function(){
 
   function checkAnswer () {
     $('#solution-input').on('input', function() {
+      clockCountdown();
       userAnswer = parseInt($('#solution-input').val());
       if (userAnswer === correctAnswer) {
-        //console.log("Well done Perverts");
         sec = sec + 10;
         score = score + 5;
-        //console.log(userAnswer);
         $('#solution-input').val('');
         $('#solution-input').css('border-color', 'white');
+        bonusFeatures()
         generateNumbers();
       }
       else {
-      //console.log("Loser");
       $('#solution-input').css('border-color', 'red');
       }
     });
+  }
+
+  function bonusFeatures() {
+    console.log("hello");
   }
 
   function gameOver () {
@@ -61,8 +66,7 @@ $(document).ready(function(){
       $('#answer-box').removeClass('hidden');
       $('#gameover-box').addClass('hidden');
       clearInterval(timer);
-      $('#secondsLeft').text(sec);
-      //clockCountdown();
+      $('#secondsLeft').text(10);
       generateNumbers();
       checkAnswer();
     });
