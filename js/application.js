@@ -3,8 +3,8 @@ $(document).ready(function(){
 var rightAnswer = 0;
 var secLeft = 10;
 var timer;
-var playerInput = $('#solution-input');
-var clock = $('#secondsLeft');
+var $playerInput = $('#solution-input');
+var $clock = $('#secondsLeft');
 var playerScore = 0;
 
 var randomGen = function () {
@@ -22,7 +22,7 @@ var genEqn = function () {
 timer = setInterval(keepTime, 1000);
 
 function keepTime() {
-  clock.text(secLeft);
+  $clock.text(secLeft);
   secLeft --;
   clearInterval(timer);
   if (secLeft < 1) {
@@ -32,7 +32,7 @@ function keepTime() {
 
 
 function chkAnswer() {
-  var answer = playerInput.val();
+  var answer = $playerInput.val();
   if ((term1+term2) == answer) {
     secLeft += 10;
     rightAnswer ++;
@@ -51,7 +51,7 @@ function endGame() {
 }
 
 genEqn();
-playerInput.keyup(chkAnswer);
+$playerInput.keyup(chkAnswer);
 
 
 });
