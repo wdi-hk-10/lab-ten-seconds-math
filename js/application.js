@@ -6,8 +6,8 @@ $(document).ready(function(){
   var score = 0;
 
   function init () {
-    generateNumbers();
     clockCountdown();
+    generateNumbers();
     checkAnswer();
   }
 
@@ -16,47 +16,56 @@ $(document).ready(function(){
     var num2 = Math.floor((Math.random() * 10) + 1);
     $('#num1').text(num1);
     $('#num2').text(num2);
-    correctAnswer = num1+num2;
+    correctAnswer = num1 + num2;
     return correctAnswer;
   }
 
   function clockCountdown () {
-    sec = 5;
+    sec = 10;
     var timer = setInterval(function() {
-      $('#secondsLeft').text(sec--);
-        if (sec === -1) { // why does this need to be -1, not 0
-          gameOver();
-        }
-      },1000);
-    }
+    $('#secondsLeft').text(sec--);
+      if (sec === -1) { // why does this need to be -1, not 0.
+        gameOver();
+      }
+    },1000);
+  }
 
   function checkAnswer () {
     $('#solution-input').on('input', function() {
-    userAnswer = $('#solution-input').val();
-      if (userAnswer == correctAnswer) {
-        console.log("Well done Perverts");
+      userAnswer = parseInt($('#solution-input').val());
+      if (userAnswer === correctAnswer) {
+        //console.log("Well done Perverts");
         sec = sec + 10;
         score = score + 5;
-        console.log(userAnswer);
+        //console.log(userAnswer);
+        $('#solution-input').val('');
+        $('#solution-input').css('border-color', 'white');
         generateNumbers();
-        clearInput();
       }
       else {
-      console.log("Loser");
+      //console.log("Loser");
       $('#solution-input').css('border-color', 'red');
       }
     });
   }
 
-
-  function clearInput () {
-     userAnswer = "";
+  function gameOver () {
+    $('#answer-box').addClass('hidden');//.fadeOut();//
+    $('#gameover-box').removeClass('hidden');//.delay(1000).fadeIn(1000);/
+    $('#score').text(score);
+    restart();
   }
 
-  function gameOver () {
-    $('#answer-box').addClass('hidden')//.fadeOut();//
-    $('#gameover-box').removeClass('hidden')//.delay(1000).fadeIn(1000);//
-    $('#score').text(score);
+  function restart() {
+    $('#restart-btn').on('click', function() {
+      $('#answer-box').removeClass('hidden');
+      $('#gameover-box').addClass('hidden');
+      clearInterval(timer);
+      $('#secondsLeft').text(sec);
+      //clockCountdown();
+      generateNumbers();
+      checkAnswer();
+    });
   }
 
   init();
