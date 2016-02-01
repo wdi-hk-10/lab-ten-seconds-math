@@ -4,6 +4,7 @@ $(document).ready(function(){
   var $solution = $('#solution-input');
   var $secondsLeft = $('#secondsLeft');
   var $gameOverBox = $('#gameover-box');
+  var $answerBox = $('#answer-box');
   var $restartButton = $('#restart-btn');
   var $score = $('#score');
 
@@ -54,6 +55,7 @@ $(document).ready(function(){
     clockId = undefined;
     $score.text(points);
     $gameOverBox.removeClass('hide');
+    $answerBox.addClass('hide');
   };
 
   var restart = function() {
@@ -61,6 +63,7 @@ $(document).ready(function(){
     $secondsLeft.text(10);
     generateEquation();
     $gameOverBox.addClass('hide');
+    $answerBox.removeClass('hide');
     $score.text('');
     points = 0;
   }
