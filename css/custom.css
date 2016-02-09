@@ -38,7 +38,7 @@
   width: 200px;
   border-color: white;
   border-style: solid;
-  border-width: 5px;
+  border-width:; 5px;
 }
 
 #gameover-box {
@@ -59,3 +59,4 @@
 #gameover-box > button {
   margin-top: 50px;
 }
+

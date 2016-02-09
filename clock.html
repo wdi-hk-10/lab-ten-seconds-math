@@ -83,21 +83,16 @@
 </body>
 </html>
 
-  function checkAnswer () {
-    $('#solution-input').on('input', function() {
-      userAnswer = parseInt($('#solution-input').val());
-      if (userAnswer === correctAnswer) {
-        //console.log("Well done Perverts");
-        sec = sec + 10;
-        score = score + 5;
-        //console.log(userAnswer);
-        $('#solution-input').val('');
-        $('#solution-input').css('border-color', 'white');
-        generateNumbers();
+
+Previous clock function that wouldn't reset the event listeners...
+
+   function clockCountdown () {
+    console.log("Hello");
+    seconds = 10;
+    timer = setInterval(function() {
+    $secondsLeft.text(seconds--);
+      if (seconds <= -1) { // why does this need to be -1, not 0.
+        gameOver();
       }
-      else {
-      //console.log("Loser");
-      $('#solution-input').css('border-color', 'red');
-      }
-    });
+    },1000);
   }

@@ -1,80 +1,97 @@
 $(document).ready(function(){
   // your code here
 
-  var sec;
-  var timer;
+  var $num1 = $('#num1');
+  var $num2 = $('#num2');
+  var $solution = $('#solution-input');
+  var $secondsLeft = $('#secondsLeft');
+  var $gameOverBox = $('#gameover-box');
+  var $answerBox = $('#answer-box');
+  var $restartButton = $('#restart-btn');
+  var $score = $('#score');
+
+  var clockId;
   var correctAnswer;
-  var score = 0;
+  var points = 0;
 
   function init () {
-    //clockCountdown();
-    generateNumbers();
+    // clockCountdown();
+    generateRandomNumbers();
     checkAnswer();
   }
 
-  function generateNumbers () {
-    var num1 = Math.floor((Math.random() * 10) + 1);
-    var num2 = Math.floor((Math.random() * 10) + 1);
-    $('#num1').text(num1);
-    $('#num2').text(num2);
-    correctAnswer = num1 + num2;
+  function startClock () {
+    clockId = setInterval(updateSecondsLeft, 1000, -1);
+  };
+
+  function updateSecondsLeft (seconds) {
+    var timer = parseInt($secondsLeft.text()) + seconds;
+    $secondsLeft.text(timer);
+    if (timer === 0) {
+      gameOver();
+    }
+  };
+
+  function generateRandomNumbers () {
+    var random1 = Math.floor((Math.random() * 10) + 1);
+    var random2 = Math.floor((Math.random() * 10) + 1);
+    $num1.text(random1);
+    $num2.text(random2);
+    correctAnswer = random1 + random2;
     return correctAnswer;
   }
 
-  function clockCountdown () {
-    console.log("Hello");
-    sec = 10;
-    timer = setInterval(function() {
-    $('#secondsLeft').text(sec--);
-      if (sec <= -1) { // why does this need to be -1, not 0.
-        gameOver();
-      }
-    },1000);
-  }
-
   function checkAnswer () {
-    $('#solution-input').on('input', function() {
-      clockCountdown();
-      userAnswer = parseInt($('#solution-input').val());
+    $solution.on('input', function() {
+      var userAnswer = parseInt($solution.val());
+      if (!clockId) {
+        startClock();
+      }
       if (userAnswer === correctAnswer) {
-        sec = sec + 10;
-        score = score + 5;
-        $('#solution-input').val('');
-        $('#solution-input').css('border-color', 'white');
-        bonusFeatures()
-        generateNumbers();
+        points = points + 5;
+        updateSecondsLeft(2);  // intentionally reduced from 10 to 2
+        $solution.val('');
+        $solution.css('border-color', 'white');
+        // bonusFeatures()
+        generateRandomNumbers();
       }
       else {
-      $('#solution-input').css('border-color', 'red');
+        $solution.css({
+          outline: 'none',
+          border: '1px solid red'
+        });
       }
     });
   }
 
-  function bonusFeatures() {
-    console.log("hello");
-  }
+  //function bonusFeatures() {
+  //  console.log("hello");
+  // }
 
   function gameOver () {
-    $('#answer-box').addClass('hidden');//.fadeOut();//
-    $('#gameover-box').removeClass('hidden');//.delay(1000).fadeIn(1000);/
-    $('#score').text(score);
+    clearInterval(clockId);
+    clockId = undefined;
+    $answerBox.addClass('hidden');//.fadeOut();//
+    $gameOverBox.removeClass('hidden');//.delay(1000).fadeIn(1000);/
+    $score.text(points);
     restart();
   }
 
   function restart() {
-    $('#restart-btn').on('click', function() {
-      $('#answer-box').removeClass('hidden');
-      $('#gameover-box').addClass('hidden');
-      clearInterval(timer);
-      $('#secondsLeft').text(10);
-      generateNumbers();
+    $restartButton.on('click', function() {
+      $answerBox.removeClass('hidden');
+      $gameOverBox.addClass('hidden');
+      $secondsLeft.text(10);
+      generateRandomNumbers();
       checkAnswer();
+      $score.text("");
+      points = 0;
     });
   }
 
   init();
 
-}); //end of document
+}); // end of document
 
 // To show it: $("#myId").removeClass('hidden');
 // To hide it: $("#myId").addClass('hidden');

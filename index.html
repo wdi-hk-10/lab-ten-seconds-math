@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="10 Second Math game">
     <meta name="author" content="">
-
+    <title>10 Second Maths</title>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/application.js"></script>
@@ -20,7 +20,7 @@
       <div class="row">
 
         <div class="page-header">
-          <h2 class="text-center">10 Seconds Maths Game</h2>
+          <h2 class="text-center">10 Second Maths Game</h2>
         </div>
 
         <div id="gameover-box" class="well hidden col-xs-12 col-sm-8 col-sm-offset-2">
@@ -29,7 +29,7 @@
           <button type="button" class="btn btn-primary center-block" id="restart-btn">Start again?</button>
         </div>
 
-        <div id="answer-box" class="well col-xs-12 col-sm-8 col-sm-offset-2">
+        <div id="answer-box" class="well col-xs-12 col-sm-8 col-sm-offset-2"> <!-- remove hidden to reshow -->
           <p id="counter" class="text-center">
             <span id="secondsLeft">10</span>
             Seconds Left
@@ -42,6 +42,27 @@
           </p>
 
           <input type="number" class="center-block" id="solution-input" placeholder="Your answer">
+        </div>
+
+         <div id="select-box" class="well hidden col-xs-12 col-sm-8 col-sm-offset-2">
+          <div class="checkbox">
+            <label><input id="addition" type="checkbox" value="">Addition</label>
+          </div>
+          <div class="checkbox">
+            <label><input id="subtraction" type="checkbox" value="">Subtraction</label>
+          </div>
+          <div class="checkbox">
+            <label><input id="multiplication" type="checkbox" value="">Multiplication</label>
+          </div>
+          <div class="checkbox">
+            <label><input id="divison" type="checkbox" value="">Division</label>
+          </div>
+          <div class="checkbox">
+            <label><input id="power" type="checkbox" value="">Power of 2</label>
+          </div>
+          <div class="checkbox">
+            <label><input id="squareroot" type="checkbox" value="">Square Root</label>
+          </div>
         </div>
 
       </div>
