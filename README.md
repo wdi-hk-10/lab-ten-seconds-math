@@ -59,9 +59,9 @@ Calculate a better score based on:
 ### Instructions
 
 1. Fork the [project on Github](https://github.com/wdi-hk-10/ten-seconds-math)
-1. Clone the project to your computer
-1. Build the game!
-1. Commit your changes and push to github (`git push origin master`)
-1. Submit a pull-request to the original repo!
+2. Clone the project to your computer
+3. Build the game!
+4. Commit your changes and push to github (`git push origin master`)
+5. Submit a pull-request to the original repo!
 
 > [Original idea](http://www.mental-math-trainer.com)
